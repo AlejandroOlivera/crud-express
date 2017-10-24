@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        <%=title%>
+    </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+        crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>
+            <%=title%>
+        </h1>
+    </div>
+    <form action="/add" method="post">
+        <legend>
+            Add a task
+        </legend>
+        <div class="form-group">
+            <input type="text" id="title" class="form-control" name="title">
+            <div class="form-group">
+                <textarea placeholder="Add a Description" class="form-control" rows="1" cols="50" name="description"></textarea>
+            </div>
+        </div>
+        <button class="btn btn-primary">
+            Add
+        </button>
+    </form>
+    <hr>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Operations</th>
+            </tr>
+        </thead>
+        <tbody>
+                <% for (var i = 0; i < tasks.length; i ++) {%>
+                    <tr>
+                        <td> <%= i + 1 %> </td>
+                        <td><strong><%= tasks[i].title %></strong></td>
+                        <td><%= tasks[i].description %></td>
+                        <td>
+                            <a 
+                            class="<%= tasks[i].status ? 'btn btn-success' : 'btn btn-dark' %>"
+                            href="/turn/<%= tasks[i].id %>">Done</a>
+                            <a class="btn btn-danger" href="/delete/<%= tasks[i]._id%> ">Delete</a>
+                        </td>
+                    </tr>
+                    
+                <% } %>
+            </tbody>
+      
+    </table>
+    
+    <script>
+        document.getElementById('title').focus()
+        document.getElementById('delete')
+            
+    
+    </script>
+
+</body>
+
+</html>
